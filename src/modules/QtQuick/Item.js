@@ -342,6 +342,18 @@ class QtQuick_Item extends QtQml_QtObject {
     element.addEventListener("focus", updateFocus);
     element.addEventListener("blur", updateFocus);
   }
+  mapToItem(item, x, y) {
+    // const QMLTranslate = QmlWeb.getConstructor("QtQuick", "2.0", "Translate");
+    // const QMLRotation = QmlWeb.getConstructor("QtQuick", "2.0", "Rotation");
+    // const QMLScale = QmlWeb.getConstructor("QtQuick", "2.0", "Scale");
+
+    let affine = new QmlWeb.QMatrix4x4();
+    let bias = new QmlWeb.QVector4D();
+
+    function translate_(M, b, x, y) { return M, b.plus(QVector4D(x, y, 0, 0)) };
+    function scale_(M, b, x, y) { return M, b };
+    console.log("hello from mapToItem!")
+  }
   $updateTransform() {
     const QMLTranslate = QmlWeb.getConstructor("QtQuick", "2.0", "Translate");
     const QMLRotation = QmlWeb.getConstructor("QtQuick", "2.0", "Rotation");
